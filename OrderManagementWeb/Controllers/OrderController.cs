@@ -8,17 +8,17 @@ namespace OrderManagement.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private IOrderManager orderManager;
+        private readonly IOrderManager _orderManager;
 
-        public OrderController(IOrderManager orderMngr)
+        public OrderController(IOrderManager orderManager)
         {
-            orderManager = orderMngr;
+            _orderManager = orderManager;
         }
 
         [HttpPost]
         public ActionResult<string> Post(Order order)
         {
-            return Ok(orderManager.Transmit(order));
+            return Ok(_orderManager.Transmit(order));
         }
     }
 }

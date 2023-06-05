@@ -6,16 +6,16 @@ namespace OrderManagement
 {
     public class OrderManager : IOrderManager
     {
-        private IOrderSender orderSender;
+        private readonly IOrderSender _orderSender;
 
-        public OrderManager(IOrderSender sender)
+        public OrderManager(IOrderSender orderSender)
         {
-            orderSender = sender;
+            _orderSender = orderSender;
         }
 
         public async Task<string> Transmit(Order order)
         {
-            return await orderSender.Send(order);
+            return await _orderSender.Send(order);
         }
     }
 }
